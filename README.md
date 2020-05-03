@@ -102,13 +102,13 @@ Thanks to the previous explanation, we can easily understand the order of the ``
 I invite all readers to check the online [tool](http://latentflip.com/loupe/?code=ZnVuY3Rpb24gcHJpbnRIZWxsbygpIHsNCiAgICBjb25zb2xlLmxvZygnSGVsbG8gZnJvbSBiYXonKTsNCn0NCg0KZnVuY3Rpb24gYmF6KCkgew0KICAgIHNldFRpbWVvdXQocHJpbnRIZWxsbywgMzAwMCk7DQp9DQoNCmZ1bmN0aW9uIGJhcigpIHsNCiAgICBiYXooKTsNCn0NCg0KZnVuY3Rpb24gZm9vKCkgew0KICAgIGJhcigpOw0KfQ0KDQpmb28oKTs%3D!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D) created by Philip Robers :heart_eyes:
 
 ## Closure in js
-A closure is a feature in JavaScript where an inner function has access to the outer (enclosing) function’s variables — a scope chain.
-The closure has three scope chains:
+Definition : A closure is a feature in JavaScript where an inner function has access to the outer (enclosing) function’s variables — a scope chain. Then, a  closure has three scope chains:
  - it has access to its own scope (variables defined between its curly brackets).
  - it has access to the outer function’s variables.
  - it has access to the global variables.
 
-Take an example
+In a other word, closure gives you access to an outer function's scope from an inner function.
+Take an example.
 
 ```
 const greeting = (name) => {
@@ -130,29 +130,31 @@ greetingFx();
 Another small and fun example to explain a closure. Go on the web page [MDN webb docs](https://developer.mozilla.org/fr/) and copy-paste this code on the console. Click on the page, wait 2 seconds and reclick. 
 
 ```
-function changePageColor(color) {
-  return function() {
+const changePageColor = (color) => {
+  return (() => {
     document.body.style.color = color;
-  };
+  });
 }
 
 var textBlue = changePageColor('blue');
 var textRed = changePageColor('red');
 
 document.getElementById('content').onclick = textBlue;
-setTimeout(()=> {
+setTimeout(() => {
  document.getElementById('content').onclick = textRed;
 },2000);
 ```
+Now you can create a closure with your favorite color read every page with this color. In the previous example, ```testBlue``` and ```textRed``` share the same function body but a different lexical environment (in this case blue and resctively red).
 
+Why closures are important?
 Closures are really useful because they let you associate data with a function that operates on that data. This has obvious parallels to object-oriented programming, where objects allow you to associate data (object's properties) with one or more methods. Consequently, you can use a closure anywhere that you might normally use an object with only a single method. A other reason why closures are usefull is because they makes possible to emulate private methods (restrict the access).
+When you use closures for data privacy, the enclosed variables are only in scope with the outer function.
 
 
 
 
 
 ## Promises :rocket:
-
 
 
 ## The keyword ``` this ``` in js :hushed:
