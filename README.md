@@ -2,7 +2,7 @@
 
 ## Synchronous and Asynchronous
 
-By default, JavaScript tasks are functions that are executed sequentially in a single process. It’s single-threaded. Js code runs synchronously. This means that a line of code is executed, then the next one is executed, and so on. However, sometimes you can not wait and halt completely all the program. We don’t want a task to block other tasks. Almost all the I/O primitives in JavaScript are non-blocking. Network requests, Node.js filesystem operations, and so on. Being blocking is the exception, and this is why JavaScript is based so much on callbacks, and more recently on promises and async/await :punch:
+By default, JavaScript tasks are functions that are executed sequentially in a single process. ***It’s single-threaded***. Js code runs synchronously. This means that a line of code is executed, then the next one is executed, and so on. However, sometimes you can not wait and halt completely all the program. We don’t want a task to block other tasks. Almost all the I/O primitives in JavaScript are non-blocking. Network requests, Node.js filesystem operations, and so on. Being blocking is the exception, and this is why JavaScript is based so much on callbacks, and more recently on promises and async/await :punch:
 
 Let's take a simple example with the function ```setTimeout(callback, milliseconds)```
 
@@ -104,9 +104,9 @@ I invite all readers to check the online [tool](http://latentflip.com/loupe/?cod
 ## Closure in js
 A closure is a feature in JavaScript where an inner function has access to the outer (enclosing) function’s variables — a scope chain.
 The closure has three scope chains:
- - it has access to its own scope — variables defined between its curly brackets
- - it has access to the outer function’s variables
- - it has access to the global variables
+ - it has access to its own scope (variables defined between its curly brackets).
+ - it has access to the outer function’s variables.
+ - it has access to the global variables.
 
 Take an example
 
@@ -127,13 +127,10 @@ greetingFx();
 
 ```greeting``` returns a closure that is assigned to ```greetingFx```. The function ```greetingFx``` has access to the parameter ```name```, the free variable ```message``` and ```sayHello```. Use ```console.dir(greetingFx)``` to see the scope and the closure.
 
-Closures are useful because they let you associate data (the lexical environment) with a function that operates on that data. This has obvious parallels to object-oriented programming, where objects allow you to associate data (the object's properties) with one or more methods. Consequently, you can use a closure anywhere that you might normally use an object with only a single method.
-
-Another small and fun example. Take a web page and go inside the main ```div``` with an id and copy-paste this code and replace the id in the code below. 
+Another small and fun example to explain a closure. Go on the web page [MDN webb docs](https://developer.mozilla.org/fr/) and copy-paste this code on the console. Click on the page, wait 2 seconds and reclick. 
 
 ```
 function changePageColor(color) {
-  var size = 
   return function() {
     document.body.style.color = color;
   };
@@ -142,11 +139,17 @@ function changePageColor(color) {
 var textBlue = changePageColor('blue');
 var textRed = changePageColor('red');
 
-document.getElementById('ID').onclick = textBlue;
+document.getElementById('content').onclick = textBlue;
 setTimeout(()=> {
- document.getElementById('ID').onclick = textRed;
+ document.getElementById('content').onclick = textRed;
 },2000);
 ```
+
+Closures are really useful because they let you associate data with a function that operates on that data. This has obvious parallels to object-oriented programming, where objects allow you to associate data (object's properties) with one or more methods. Consequently, you can use a closure anywhere that you might normally use an object with only a single method. A other reason why closures are usefull is because they makes possible to emulate private methods (restrict the access).
+
+
+
+
 
 ## Promises :rocket:
 
@@ -154,7 +157,9 @@ setTimeout(()=> {
 
 ## The keyword ``` this ``` in js :hushed:
 
-- By default, this refers to a global object, which is global in the case of NodeJS and a window object in the case of a browser
+The JavaScript ```this``` keyword refers to the object it belongs to.
+
+- By default, ```this``` refers to the global object, which is ```global``` in the case of NodeJS and the ```window``` object in the case of a browser as Chrome.
 - When a method is called as a property of an object, then this refers to the parent object
 - When a function is called with the new operator, then this refers to the newly created instance
 - When a function is called using the call and apply methods, then this refers to the value passed as the first argument of the call or apply method
