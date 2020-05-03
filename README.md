@@ -166,6 +166,8 @@ sebEmail.getEmail(); // sebastien@rosa.be
 sebEmail.setName('seb');
 ```
 
+In this example, the two methods are defined inside the scope of the function ```initializeEmail``` and then gives the access to the parameter ```name``` and the variable ```domain```. There are priviliged methods. We can also see a similitude to Oriented Object programming with a getter and a sette and private data.
+
 ## Promises :rocket:
 
 
