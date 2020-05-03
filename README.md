@@ -68,8 +68,8 @@ const blockThread = (ms) => {
   return new Promise(res => setTimeout(res,ms));
 }
 
-var myPromise = new Promise(function(resolve, reject) {
-  if (true) {
+var myPromise = new Promise((resolve, reject) => {
+  if(true) {
     resolve("Stuff worked!");
   }
   else {
