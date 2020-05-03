@@ -146,13 +146,25 @@ setTimeout(() => {
 ```
 Now you can create a closure with your favorite color read every page with this color. In the previous example, ```testBlue``` and ```textRed``` share the same function body but a different lexical environment (in this case blue and resctively red).
 
-Why closures are important?
+***But why closures are important?***
 Closures are really useful because they let you associate data with a function that operates on that data. This has obvious parallels to object-oriented programming, where objects allow you to associate data (object's properties) with one or more methods. Consequently, you can use a closure anywhere that you might normally use an object with only a single method. A other reason why closures are usefull is because they makes possible to emulate private methods (restrict the access).
 When you use closures for data privacy, the enclosed variables are only in scope with the outer function.
 
+```
+const initializeEmail = (name) => {
+  const domain = '@rosa.be';
+  return {
+    getEmail : () =>  name+domain,
+    setName : (newName) => {
+      name = newName;
+     }
+  }
+}
 
-
-
+sebEmail = initializeEmail('sebastien');
+sebEmail.getEmail(); // sebastien@rosa.be 
+sebEmail.setName('seb');
+```
 
 ## Promises :rocket:
 
