@@ -63,6 +63,8 @@ A step-by-step explanation of the previous example when the code starts to run.
 
 In the previous example, there are no promises or other js events (like onClick event) so let me introduce the concept of the job queue and the event queue. The job queue is filled with Promise resolve and reject functions. The event queue contains all the callbacks event functions. It is important to note that callbacks in the job queue have a higher priority of execution than callbacks in the event queue. That means that the event loop will execute all of them one by one before any other callback in the event queue.  To be more precise, we need to introduce the ***Next Tick*** which is composed by one callback, all the elements in the job queue and fully or only some parts of the render queue (means that we need to update the screen).
 
+![JS main thread - web browser](main-thread-architecture.jpg)
+
 Take an other exemple.
 
 ```
