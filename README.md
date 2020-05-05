@@ -37,7 +37,7 @@ In this example, the code is not blocked thanks to the callback, and then 'Hi Ro
 To give a correct explanation, we need to introduce some concepts and go under the hood of a browser.
 
 ### Javascript Engine 
-An engine is a program that translates JS into machine code and execute codes results on a CPU. The most popular JS engine is V8 and used by most popular browsers such as Chrome.
+An engine is a program that translates JS into machine code and execute codes results on a CPU. The most popular JS engine is V8 and used by most popular browsers such as Chrome. V8 provides the runtime environment in which JavaScript executes. The DOM, and the other Web Platform APIs are provided by the browser.
 
 ### Call Stack 
 It is the place where the code is executed. The call stack is a LIFO queue (last in, first out) of data storage that stores the current function execution context of a program. When we execute a function, JS runtime pushes frame on top of the stack and when we return from a function it pops off the frame.
@@ -200,3 +200,4 @@ The JavaScript ```this``` keyword refers to the object it belongs to.
   - [Understanding Non-Blocking I/O in JavaScript](https://www.codementor.io/@theresamostert/understanding-non-blocking-i-o-in-javascript-cvmg1hp6l)
   - [Nodejs.org : blocking vs non-blocking](https://nodejs.org/en/docs/guides/blocking-vs-non-blocking/)
   - [Eploiringjs : JavaScript for impatient programmers](https://exploringjs.com/impatient-js/ch_variables-assignment.html#closures)
+  - [V8-JS-engine](https://nodejs.dev/the-v8-javascript-engine)
