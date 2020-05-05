@@ -61,7 +61,7 @@ A step-by-step explanation of the previous example when the code starts to run.
 6. ```console.log('You are patient enough to wait 2 seconds minimum')``` is then pushed onto the call stack then popped.
 7. ```hello()``` is popped.
 
-In the previous example, there are no promises or other js events (like onClick event) so let me introduce the concept of the job queue and the event queue. The job queue is filled with Promise resolve and reject functions. The event queue contains all the callbacks event functions. It is important to note that callbacks in the job queue have a higher priority of execution than callbacks in the event queue. That means that the event loop will execute all of them one by one before any other callback in the event queue.  To be more precise, we need to introduce the ***Next Tick*** which is composed by one callback, all the elements in the job queue and fully or only some parts of the render queue (means that we need to update the screen).
+In the previous example, there are no promises or other js events (like onClick event) so let me introduce the concept of the job queue and the event queue. The ***Job queue*** is filled with Promise resolve and reject functions. The ***Event queue*** contains all the callbacks event functions. It is important to note that callbacks in the job queue have a higher priority of execution than callbacks in the event queue. That means that the event loop will execute all of them one by one before any other callback in the event queue.  To be more precise, we need to introduce the ***Next Tick*** which is composed by one callback, all the elements in the job queue and fully or only some parts of the render queue (means that we need to update the screen).
 
 ![JS main thread - web browser](main-thread-architecture.jpg)
 
@@ -108,11 +108,11 @@ Promise {<resolved>: undefined}
 
 The fourth ```console.log("4) ... ")```  is zero delay but it doesn't mean the callback will be executed after zero milliseconds exactly. The execution depends on the number of waiting tasks in the queue.
 
-***Don't block then event loop!***
-The browser repaint/reflow the screen
+***Don't block then event loop!*** :persevere:
 
+The browser would like to repaint/reflow the screen every 16.6 milliseconds (60FMs is ideal! why? if you are curious check [here](https://frarizzi.science/journal/web-engineering/browser-rendering-queue-in-depth)) but it is constrained by the JS code and we can't do a render when there is code on the call stack. Then if you put slow code on the stack, the browser can't create a fluid UI. 
 
-I invite all readers to check the online [tool](http://latentflip.com/loupe/?code=ZnVuY3Rpb24gcHJpbnRIZWxsbygpIHsNCiAgICBjb25zb2xlLmxvZygnSGVsbG8gZnJvbSBiYXonKTsNCn0NCg0KZnVuY3Rpb24gYmF6KCkgew0KICAgIHNldFRpbWVvdXQocHJpbnRIZWxsbywgMzAwMCk7DQp9DQoNCmZ1bmN0aW9uIGJhcigpIHsNCiAgICBiYXooKTsNCn0NCg0KZnVuY3Rpb24gZm9vKCkgew0KICAgIGJhcigpOw0KfQ0KDQpmb28oKTs%3D!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D) created by Philip Roberts :heart_eyes:
+I invite all readers to see a nice [talk](https://www.youtube.com/watch?v=8aGhZQkoFbQ) and check the online [tool](http://latentflip.com/loupe/?code=ZnVuY3Rpb24gcHJpbnRIZWxsbygpIHsNCiAgICBjb25zb2xlLmxvZygnSGVsbG8gZnJvbSBiYXonKTsNCn0NCg0KZnVuY3Rpb24gYmF6KCkgew0KICAgIHNldFRpbWVvdXQocHJpbnRIZWxsbywgMzAwMCk7DQp9DQoNCmZ1bmN0aW9uIGJhcigpIHsNCiAgICBiYXooKTsNCn0NCg0KZnVuY3Rpb24gZm9vKCkgew0KICAgIGJhcigpOw0KfQ0KDQpmb28oKTs%3D!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D) created by Philip Roberts :heart_eyes: 
 
 ## Closure in js :rocket:
 Definition : A closure is a feature in JavaScript where an inner function has access to the outer (enclosing) function’s variables — a scope chain. Then, a  closure has three scope chains:
