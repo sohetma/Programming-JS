@@ -43,8 +43,8 @@ An engine is a program that translates JS into machine code and execute codes re
 It is the place where the code is executed. The call stack is a LIFO queue (last in, first out) of data storage that stores the current function execution context of a program. When we execute a function, JS runtime pushes frame on top of the stack and when we return from a function it pops off the frame.
 
 ### Web APIs
-a link between your code and the browser’s internals to schedule tasks, interact with the DOM and more.
-Every time, we add a callback it is added to the Event queue and when
+When the code is executed it may call the Browser’s APIs to interact with the DOM or schedule some async task. 
+Every time, we add a callback it is added to the Event queue and the Job queue contains promises.
 
 ### Event loop
 The event loop continuously checks the call stack to see if there’s any function that needs to run.
@@ -61,7 +61,7 @@ A step-by-step explanation of the previous example when the code starts to run.
 6. ```console.log('You are patient enough to wait 2 seconds minimum')``` is then pushed onto the call stack then popped.
 7. ```hello()``` is popped.
 
-In the previous example, there are no promises or other js events (like onClick event) but ECMAScript 2015 introduced the concept of the job queue and the event queue. The job queue is filled with Promise resolve and reject functions. The event queue contains all the callbacks event functions. It is important to note that callbacks in the job queue have a higher priority of execution than callbacks in the event queue. That means that the event loop will execute all of them one by one before any other callback in the event queue. 
+In the previous example, there are no promises or other js events (like onClick event) so let me introduce the concept of the job queue and the event queue. The job queue is filled with Promise resolve and reject functions. The event queue contains all the callbacks event functions. It is important to note that callbacks in the job queue have a higher priority of execution than callbacks in the event queue. That means that the event loop will execute all of them one by one before any other callback in the event queue.  To be more precise, we need to introduce the ***Next Tick*** which is composed by one callback, all the elements in the job queue and fully or only some parts of the render queue (means that we need to update the screen).
 
 Take an other exemple.
 
