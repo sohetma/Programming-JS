@@ -2,7 +2,7 @@
 
 ## Synchronous and Asynchronous
 
-By default, JavaScript tasks are functions that are executed sequentially in a single process. ***It’s single-threaded***. Js code runs synchronously. This means that a line of code is executed, then the next one is executed, and so on. However, sometimes you can not wait and halt completely all the program. We don’t want a task to block other tasks. Almost all the I/O primitives in JavaScript are non-blocking. Network requests, Node.js filesystem operations, and so on. Being blocking is the exception, and this is why JavaScript is based so much on callbacks, and more recently on promises and async/await :punch:
+By default, JavaScript tasks are functions that are executed sequentially in a single process. ***It’s single-threaded***. Js code runs synchronously. This means that a line of code is executed, then the next one is executed, and so on. However, sometimes you can not wait and halt completely all the program. We don’t want a task to block other tasks. Almost all the I/O primitives in JavaScript are non-blocking. Network requests, Node.js filesystem operations, and so on. Being blocking is the exception, and this is why JavaScript is based so much on callbacks, on promises and async/await :punch:
 
 Let's take a simple example with the function ```setTimeout(callback, milliseconds)```
 
@@ -40,7 +40,11 @@ To give a correct explanation, we need to introduce some concepts and go under t
 An engine is a program that translates JS into machine code and execute codes results on a CPU. The most popular JS engine is V8 and used by most popular browsers such as Chrome.
 
 ### Call Stack 
-The call stack is a LIFO queue (last in, first out) of data storage that stores the current function execution context of a program. When we execute a function, JS runtime pushes frame(variables, parameters,..) on top of the stack and when we return from a function it pops off the frame.
+It is the place where the code is executed. The call stack is a LIFO queue (last in, first out) of data storage that stores the current function execution context of a program. When we execute a function, JS runtime pushes frame on top of the stack and when we return from a function it pops off the frame.
+
+### Web APIs
+a link between your code and the browser’s internals to schedule tasks, interact with the DOM and more.
+Every time, we add a callback it is added to the Event queue and when
 
 ### Event loop
 The event loop continuously checks the call stack to see if there’s any function that needs to run.
@@ -62,7 +66,7 @@ In the previous example, there are no promises or other js events (like onClick 
 Take an other exemple.
 
 ```
-const start = new Date().getSeconds();
+const start = new Date();
 
 const blockThread = (ms) => {
   return new Promise(res => setTimeout(res,ms));
@@ -77,29 +81,36 @@ var myPromise = new Promise((resolve, reject) => {
   }
 });
 
-blockThread(3000).then(() => console.log("1) Ran after " + (new Date().getSeconds() - start) + " seconds"));
+blockThread(3000).then(() => console.log("1) Ran after " + (new Date() - start) + " milliseconds"));
 
-myPromise.then(() => console.log("2) Ran after " + (new Date().getSeconds() - start) + " seconds"));
+myPromise.then(() => console.log("2) Ran after " + (new Date() - start) + " milliseconds"));
 
-console.log("3) Ran after " + (new Date().getSeconds() - start) + " seconds");
+console.log("3) Ran after " + (new Date() - start) + " milliseconds");
 
 setTimeout(() => {
-  console.log("4) Ran after " + (new Date().getSeconds() - start) + " seconds");
+  console.log("4) Ran after " + (new Date() - start) + " milliseconds");
 }, 0);
 
-myPromise.then(() => console.log("5) Ran after " + (new Date().getSeconds() - start) + " seconds"));
+myPromise.then(() => console.log("5) Ran after " + (new Date() - start) + " milliseconds"));
 ```
 Thanks to the previous explanation, we can easily understand the order of the ```console.log()```
 
 ```
-3) Ran after 0 seconds
-2) Ran after 0 seconds
-5) Ran after 0 seconds
-4) Ran after 0 seconds
-1) Ran after 3 seconds
+3) Ran after 0 milliseconds
+2) Ran after 0 milliseconds
+5) Ran after 1 milliseconds
+Promise {<resolved>: undefined}
+4) Ran after 2 milliseconds
+1) Ran after 3005 milliseconds
 ```
 
-I invite all readers to check the online [tool](http://latentflip.com/loupe/?code=ZnVuY3Rpb24gcHJpbnRIZWxsbygpIHsNCiAgICBjb25zb2xlLmxvZygnSGVsbG8gZnJvbSBiYXonKTsNCn0NCg0KZnVuY3Rpb24gYmF6KCkgew0KICAgIHNldFRpbWVvdXQocHJpbnRIZWxsbywgMzAwMCk7DQp9DQoNCmZ1bmN0aW9uIGJhcigpIHsNCiAgICBiYXooKTsNCn0NCg0KZnVuY3Rpb24gZm9vKCkgew0KICAgIGJhcigpOw0KfQ0KDQpmb28oKTs%3D!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D) created by Philip Robers :heart_eyes:
+The fourth ```console.log("4) ... ")```  is zero delay but it doesn't mean the callback will be executed after zero milliseconds exactly. The execution depends on the number of waiting tasks in the queue.
+
+***Don't block then event loop!***
+The browser repaint/reflow the screen
+
+
+I invite all readers to check the online [tool](http://latentflip.com/loupe/?code=ZnVuY3Rpb24gcHJpbnRIZWxsbygpIHsNCiAgICBjb25zb2xlLmxvZygnSGVsbG8gZnJvbSBiYXonKTsNCn0NCg0KZnVuY3Rpb24gYmF6KCkgew0KICAgIHNldFRpbWVvdXQocHJpbnRIZWxsbywgMzAwMCk7DQp9DQoNCmZ1bmN0aW9uIGJhcigpIHsNCiAgICBiYXooKTsNCn0NCg0KZnVuY3Rpb24gZm9vKCkgew0KICAgIGJhcigpOw0KfQ0KDQpmb28oKTs%3D!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D) created by Philip Roberts :heart_eyes:
 
 ## Closure in js :rocket:
 Definition : A closure is a feature in JavaScript where an inner function has access to the outer (enclosing) function’s variables — a scope chain. Then, a  closure has three scope chains:
