@@ -157,7 +157,7 @@ setTimeout(() => {
  document.getElementById('content').onclick = textRed;
 },2000);
 ```
-Now you can create a closure with your favorite color read every page with this color. In the previous example, ```testBlue``` and ```textRed``` share the same function body but a different lexical environment (in this case blue and resctively red).
+Now you can create a closure with your favorite color read every page with this color. In the previous example, ```testBlue``` and ```textRed``` share the same function body but a different lexical environment (in this case blue and respectively red).
 
 ***But why closures are important?***
 Closures are really useful because they let you associate data with a function that operates on that data. This has obvious parallels to object-oriented programming, where objects allow you to associate data (object's properties) with one or more methods. Consequently, you can use a closure anywhere that you might normally use an object with only a single method. The other reason why closures are useful is that they make it possible to emulate private methods (restrict access). When you use closures for data privacy, the enclosed variables are only in scope with the outer function.
@@ -200,3 +200,4 @@ The JavaScript ```this``` keyword refers to the object it belongs to.
   - [Nodejs.org : blocking vs non-blocking](https://nodejs.org/en/docs/guides/blocking-vs-non-blocking/)
   - [Eploiringjs : JavaScript for impatient programmers](https://exploringjs.com/impatient-js/ch_variables-assignment.html#closures)
   - [V8-JS-engine](https://nodejs.dev/the-v8-javascript-engine)
+  - [async-concurrency-python-vs-node](https://medium.com/@interfacer/intro-to-async-concurrency-in-python-and-node-js-69315b1e3e36)
