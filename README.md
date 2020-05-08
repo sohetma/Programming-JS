@@ -160,8 +160,7 @@ setTimeout(() => {
 Now you can create a closure with your favorite color read every page with this color. In the previous example, ```testBlue``` and ```textRed``` share the same function body but a different lexical environment (in this case blue and resctively red).
 
 ***But why closures are important?***
-Closures are really useful because they let you associate data with a function that operates on that data. This has obvious parallels to object-oriented programming, where objects allow you to associate data (object's properties) with one or more methods. Consequently, you can use a closure anywhere that you might normally use an object with only a single method. A other reason why closures are usefull is because they makes possible to emulate private methods (restrict the access).
-When you use closures for data privacy, the enclosed variables are only in scope with the outer function.
+Closures are really useful because they let you associate data with a function that operates on that data. This has obvious parallels to object-oriented programming, where objects allow you to associate data (object's properties) with one or more methods. Consequently, you can use a closure anywhere that you might normally use an object with only a single method. The other reason why closures are useful is that they make it possible to emulate private methods (restrict access). When you use closures for data privacy, the enclosed variables are only in scope with the outer function.
 
 ```
 const initializeEmail = (name) => {
@@ -179,7 +178,7 @@ sebEmail.getEmail(); // sebastien@rosa.be
 sebEmail.setName('seb');
 ```
 
-In this example, the two methods are defined inside the scope of the function ```initializeEmail``` and then gives the access to the parameter ```name``` and the variable ```domain```. There are priviliged methods. We can also see a similitude to Oriented Object programming with a getter and a sette and private data.
+In this example, the two methods are defined inside the scope of the function ```initializeEmail``` and then give them access to the parameter ```name``` and the variable ```domain```. There are privileged methods. We can also see a similitude to Oriented Object programming with a getter, a setter and private data.
 
 
 
