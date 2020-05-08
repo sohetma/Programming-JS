@@ -199,5 +199,6 @@ The JavaScript ```this``` keyword refers to the object it belongs to.
   - [Understanding Non-Blocking I/O in JavaScript](https://www.codementor.io/@theresamostert/understanding-non-blocking-i-o-in-javascript-cvmg1hp6l)
   - [Nodejs.org : blocking vs non-blocking](https://nodejs.org/en/docs/guides/blocking-vs-non-blocking/)
   - [Eploiringjs : JavaScript for impatient programmers](https://exploringjs.com/impatient-js/ch_variables-assignment.html#closures)
+  - [You Dont Know JS : scopes and closures](https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/scope%20%26%20closures/ch5.md)
   - [V8-JS-engine](https://nodejs.dev/the-v8-javascript-engine)
   - [async-concurrency-python-vs-node](https://medium.com/@interfacer/intro-to-async-concurrency-in-python-and-node-js-69315b1e3e36)
