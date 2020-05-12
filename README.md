@@ -6,7 +6,7 @@ By default, JavaScript tasks are functions that are executed sequentially in a s
 
 Let's take a simple example with the function ```setTimeout(callback, milliseconds)```
 
-```
+```javascript
   const hiAntoine = () => console.log('Hi Antoine');
   
   const waitForIt = () => {
