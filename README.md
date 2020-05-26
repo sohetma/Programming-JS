@@ -67,7 +67,7 @@ In the previous example, there are no promises or other js events (like onClick 
 
 Take an other exemple.
 
-```
+```javascript
 const start = new Date();
 
 const blockThread = (ms) => {
@@ -123,7 +123,7 @@ Definition : A closure is a feature in JavaScript where an inner function has ac
 In a other word, closure gives you access to an outer function's scope from an inner function.
 Take an example.
 
-```
+```javascript
 const greeting = (name) => {
   var message = 'Hello';
   const sayHello = () => {
@@ -162,7 +162,7 @@ Now you can create a closure with your favorite color read every page with this 
 ***But why closures are important?***
 Closures are really useful because they let you associate data with a function that operates on that data. This has obvious parallels to object-oriented programming, where objects allow you to associate data (object's properties) with one or more methods. Consequently, you can use a closure anywhere that you might normally use an object with only a single method. The other reason why closures are useful is that they make it possible to emulate private methods (restrict access). When you use closures for data privacy, the enclosed variables are only in scope with the outer function.
 
-```
+```javascript
 const initializeEmail = (name) => {
   const domain = '@rosa.be';
   return {
