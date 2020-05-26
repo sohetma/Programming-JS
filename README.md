@@ -142,7 +142,7 @@ greetingFx();
 
 Another small and fun example to explain a closure. Go on the web page [MDN webb docs](https://developer.mozilla.org/fr/) and copy-paste this code on the console. Click on the page, wait 2 seconds and reclick. 
 
-```
+```javascript
 const changePageColor = (color) => {
   return (() => {
     document.body.style.color = color;
